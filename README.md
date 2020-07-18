@@ -1,19 +1,19 @@
-# pauls-dat-api
+# dbrowser-dweb-api
 
-A library of functions that make working with [dat](https://github.com/datproject/dat-node) / [hyperdrive](https://github.com/mafintosh/hyperdrive) easier.
+A library of functions that make working with [dat](https://github.com/datproject/dat-node) / [dwebfs](https://github.com/mafintosh/dwebfs) easier.
 Includes common operations, and some sugars.
-These functions were factored out of [beaker browser](https://github.com/beakerbrowser/beaker)'s internal APIs.
+These functions were factored out of [dbrowserx browser](https://github.com/dbrowser/dbrowser)'s internal APIs.
 
 All async methods work with callbacks and promises. If no callback is provided, a promise will be returned.
 
-Any time a hyperdrive `archive` is expected, a [scoped-fs](https://github.com/pfrazee/scoped-fs) instance can be provided, unless otherwise stated.
+Any time a dwebfs `archive` is expected, a [dbrowser-sfs](https://github.com/dbrowser/dbrowser-sfs) instance can be provided, unless otherwise stated.
 
 ```js
-var hyperdrive = require('hyperdrive')
-var ScopedFS = require('scoped-fs')
+var dwebfs = require('dwebfs')
+var ScopedFS = require('dbrowser-sfs')
 
-var archive = hyperdrive('./my-hyperdrive')
-var scopedfs = new ScopedFS('./my-scoped-fs')
+var archive = dwebfs('./my-dwebfs')
+var scopedfs = new ScopedFS('./my-dbrowser-sfs')
 
 await pda.readFile(archive, '/hello.txt') // read the published hello.txt
 await pda.readFile(scopedfs, '/hello.txt') // read the local hello.txt
@@ -23,7 +23,7 @@ await pda.readFile(scopedfs, '/hello.txt') // read the local hello.txt
 
 To use with node versions lesser than 7 use:
 ```js
-var pda = require('pauls-dat-api/es5');
+var pda = require('dbrowser-dweb-api/es5');
 ```
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -67,7 +67,7 @@ var pda = require('pauls-dat-api/es5');
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ```js
-const pda = require('pauls-dat-api')
+const pda = require('dbrowser-dweb-api')
 ```
 
 ## Lookup
@@ -235,7 +235,7 @@ await pda.rmdir(archive, '/stuff', {recursive: true})
 
 ### download(archive, name[, cb])
 
- - `archive` Hyperdrive archive (object). Can not be a scoped-fs object.
+ - `archive` Hyperdrive archive (object). Can not be a dbrowser-sfs object.
  - `name` Entry path (string). Can point to a file or folder.
 
 Download an archive file or folder-tree.
@@ -293,7 +293,7 @@ events.on('changed', args => {
 
 ### createNetworkActivityStream(archive)
 
- - `archive` Hyperdrive archive (object). Can not be a scoped-fs object.
+ - `archive` Hyperdrive archive (object). Can not be a dbrowser-sfs object.
  - Returns a Readable stream.
 
 Watches the archive for network events, which it emits as an [emit-stream](https://github.com/substack/emit-stream). Supported events:
