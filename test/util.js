@@ -1,5 +1,5 @@
-const dwebfs = require('dwebfs')
-const ScopedFS = require('dbrowser-sfs')
+const hyperdrive = require('hyperdrive')
+const ScopedFS = require('scoped-fs')
 const fs = require('fs')
 const os = require('os')
 const path = require('path')
@@ -7,7 +7,7 @@ const path = require('path')
 const FAKE_DAT_KEY = 'f'.repeat(64)
 
 function createArchive (names) {
-  return populate(dwebfs(tmpdir()), names)
+  return populate(hyperdrive(tmpdir()), names)
 }
 
 function createFs (names) {
@@ -37,7 +37,7 @@ async function populate (target, names) {
 }
 
 function tmpdir () {
-  return fs.mkdtempSync(os.tmpdir() + path.sep + 'dbrowser-dweb-api-test-')
+  return fs.mkdtempSync(os.tmpdir() + path.sep + 'pauls-dat-api-test-')
 }
 
 function tonix (str) {

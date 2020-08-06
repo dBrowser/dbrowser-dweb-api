@@ -1,5 +1,5 @@
 const test = require('ava')
-const dwebfs = require('dwebfs')
+const hyperdrive = require('hyperdrive')
 const tutil = require('./util')
 const pda = require('../index')
 
@@ -283,7 +283,7 @@ test('watch remote sparse', async t => {
   var done
   const src = await tutil.createArchive()
   await new Promise(resolve => src.ready(resolve))
-  const dst = dwebfs(tutil.tmpdir(), src.key, {sparse: true})
+  const dst = hyperdrive(tutil.tmpdir(), src.key, {sparse: true})
   const srcRS = src.replicate({live: true})
   const dstRS = dst.replicate({live: true})
   srcRS.pipe(dstRS).pipe(srcRS)
@@ -330,7 +330,7 @@ test('watch remote non-sparse', async t => {
   var done
   const src = await tutil.createArchive()
   await new Promise(resolve => src.ready(resolve))
-  const dst = dwebfs(tutil.tmpdir(), src.key, {sparse: false})
+  const dst = hyperdrive(tutil.tmpdir(), src.key, {sparse: false})
   const srcRS = src.replicate({live: true})
   const dstRS = dst.replicate({live: true})
   srcRS.pipe(dstRS).pipe(srcRS)
@@ -371,7 +371,7 @@ test('createNetworkActivityStream', async t => {
     { name: 'bar.data', content: Buffer.from([0x00, 0x01]) },
     'bar.txt'
   ])
-  const dst = dwebfs(tutil.tmpdir(), src.key, {sparse: false})
+  const dst = hyperdrive(tutil.tmpdir(), src.key, {sparse: false})
 
   var done = new Promise(resolve => {
     var stream = pda.createNetworkActivityStream(dst)

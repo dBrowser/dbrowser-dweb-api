@@ -1,5 +1,5 @@
 const test = require('ava')
-const dwebfs = require('dwebfs')
+const hyperdrive = require('hyperdrive')
 const tutil = require('./util')
 const pda = require('../index')
 
@@ -247,7 +247,7 @@ test('EntryAlreadyExistsError w/fs', async t => {
 })
 
 test('ArchiveNotWritableError', async t => {
-  const archive = dwebfs(tutil.tmpdir(), tutil.FAKE_DAT_KEY, {createIfMissing: false})
+  const archive = hyperdrive(tutil.tmpdir(), tutil.FAKE_DAT_KEY, {createIfMissing: false})
   await new Promise(resolve => archive.ready(resolve))
 
   const err1 = await t.throws(pda.mkdir(archive, '/bar'))
