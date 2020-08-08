@@ -39,7 +39,7 @@
     "babel-cli": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "dwebfs": "git://github.com/DistributedWeb/dwebfs.git#f072444ec79551ede64366482178ad7a1357c0bc",
+    "dwebfs": "git://github.com/DistributedWeb/dwebfs.git#a42d386686c68fd116ee2fd21feeacde0d8a53a2",
     "dbrowser-sfs": "git://github.com/dBrowser/dbrowser-sfs.git#2d0675f88cf8c22f6a67a442eca88204a25990a1"
   }
 }
